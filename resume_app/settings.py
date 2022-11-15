@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,13 +22,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-1(jg@5!p+!nzrtj8j%4ynzsql8s0!v7+86l9(%mi)!#(nrbpf-'
+SECRET_KEY = config('SECRET_KEY')
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 # USE LOCAL STORAGE
-TRY_LOCAL_ = True
+TRY_LOCAL_ = False
 
 ALLOWED_HOSTS = ['127.0.0.1']
 
@@ -58,6 +60,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'resume_app.urls'
@@ -141,16 +144,16 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = '/media/'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/resume_app')
 
 if not TRY_LOCAL_:
 
     DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
     CLOUDINARY_STORAGE = {
-        'CLOUD_NAME': SecretData.CLOUDINARY_STORAGE.get('CLOUD_NAME') or '',
-        'API_KEY': SecretData.CLOUDINARY_STORAGE.get('API_KEY') or '',
-        'API_SECRET': SecretData.CLOUDINARY_STORAGE.get('API_SECRET') or ''
+        'CLOUD_NAME': config('CLOUDINARY_STORAGE_CLOUD_NAME', 'dlwilbknx'),
+        'API_KEY': config('CLOUDINARY_STORAGE_API_KEY'),
+        'API_SECRET': config('CLOUDINARY_STORAGE_API_SECRET')
     }
 
 

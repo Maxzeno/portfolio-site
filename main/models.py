@@ -5,7 +5,7 @@ from django.utils import timezone
 
 class PortfolioModel(models.Model):
 	name = models.CharField(max_length=255, blank=True)
-	photo = models.ImageField(upload_to='media/images/', blank=True, null=True)
+	photo = models.ImageField(upload_to='images/', blank=True, null=True)
 	email = models.CharField(max_length=255, blank=True)
 	phone = models.CharField(max_length=255, blank=True)
 	address = models.TextField(max_length=1000, blank=True)
@@ -33,7 +33,7 @@ class ExperienceModel(models.Model):
 
 class ProjectModel(models.Model):
 	name = models.CharField(max_length=255, blank=True)
-	photo = models.ImageField(upload_to='media/images/', blank=True, null=True)
+	photo = models.ImageField(upload_to='images/', default='/main/static/assets/img/profile.jpg', blank=True, null=True)
 	about = models.TextField(max_length=1000, blank=True)
 	start = models.CharField(max_length=255, blank=True)
 	end = models.CharField(max_length=255, blank=True)

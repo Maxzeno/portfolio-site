@@ -1,4 +1,4 @@
-{% load static %}
+{% load static tag %}
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -95,7 +95,7 @@
                                 <p class="ms-md-4 mt-md-0 mt-2">{{ project.about }}</p>
                             </div>
                         </div>
-                        <div class="flex-shrink-0"><span class="text-primary">{{ project.start }} - {{ project.end }}</span></div>
+                        <div class="flex-shrink-0"><span class="text-primary">{{ project|start_dash_end }}</span></div>
                     </div>
                     {% endfor %}
                 </div>
