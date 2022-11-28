@@ -32,6 +32,9 @@ DEBUG = True
 # USE LOCAL STORAGE
 TRY_LOCAL_ = False
 
+# if true runs migrate in wsgi
+_DEPLOY = True
+
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', config('ALLOWED_HOST')]
 
 
