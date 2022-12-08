@@ -1,0 +1,1 @@
+i think i need to install pillow and change db to postgres to use image field
