@@ -27,12 +27,22 @@ class ExperienceModel(models.Model):
 	end = models.CharField(max_length=255, blank=True)
 	show_first = models.IntegerField(default=1)
 
+	def about_split(self):
+		about = self.about
+		if isinstance(about, str):
+			sentences = about.split('\n')
+			print(sentences)
+			no_empty_str = filter(lambda i: i not in {'\r', '', '\n'}, sentences)
+			return no_empty_str
+		return []
+
 	def __str__(self):
-		return 
+		return self.company
 
 
 class ProjectModel(models.Model):
 	name = models.CharField(max_length=255, blank=True)
+	url = models.URLField(blank=True)
 	photo = models.ImageField(upload_to='images/', default='/main/static/assets/img/profile.jpg', blank=True, null=True)
 	about = models.TextField(max_length=1000, blank=True)
 	start = models.CharField(max_length=255, blank=True)
@@ -58,6 +68,7 @@ class EducationModel(models.Model):
 
 class LanguageToolsModel(models.Model):
 	css_class = models.CharField(max_length=255, blank=True)
+	name = models.CharField(max_length=255, blank=True)
 	show_first = models.IntegerField(default=1)
 
 	def __str__(self):

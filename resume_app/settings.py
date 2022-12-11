@@ -27,16 +27,19 @@ SECRET_KEY = config('SECRET_KEY')
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = bool(int(config('DEBUG', 0)))
 
 # USE LOCAL STORAGE
-TRY_LOCAL_ = False
+TRY_LOCAL_STORAGE_ = True
 
 # if true runs migrate in wsgi
 # _DEPLOY = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', config('ALLOWED_HOST')]
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
+_ALLOWED_HOST = config('ALLOWED_HOST')
+if _ALLOWED_HOST:
+    ALLOWED_HOSTS.append(_ALLOWED_HOST)
 
 # Application definition
 
@@ -51,7 +54,7 @@ INSTALLED_APPS = [
 ]
 
 
-if not TRY_LOCAL_:
+if not TRY_LOCAL_STORAGE_:
     INSTALLED_APPS.append('cloudinary')
     INSTALLED_APPS.append('cloudinary_storage')
 
@@ -150,12 +153,12 @@ MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/resume_app')
 
-if not TRY_LOCAL_:
+if not TRY_LOCAL_STORAGE_:
 
     DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
     CLOUDINARY_STORAGE = {
-        'CLOUD_NAME': config('CLOUDINARY_STORAGE_CLOUD_NAME', 'dlwilbknx'),
+        'CLOUD_NAME': config('CLOUDINARY_STORAGE_CLOUD_NAME'),
         'API_KEY': config('CLOUDINARY_STORAGE_API_KEY'),
         'API_SECRET': config('CLOUDINARY_STORAGE_API_SECRET')
     }
