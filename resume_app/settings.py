@@ -30,7 +30,7 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = bool(int(config('DEBUG', 0)))
 
 # USE LOCAL STORAGE
-TRY_LOCAL_STORAGE_ = True
+TRY_LOCAL_STORAGE_ = bool(int(config('TRY_LOCAL_STORAGE_', 0)))
 
 # if true runs migrate in wsgi
 # _DEPLOY = True

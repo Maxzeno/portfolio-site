@@ -75,10 +75,9 @@
                     <div class="d-flex flex-column flex-md-row justify-content-between {% if not forloop.last %}mb-5{% endif %}">
                         <div class="flex-grow-1">
                             <div class="subheading-sm mb-4">{{ experience.position }} - {{ experience.company }}</div>
-                            <ul class="fa-ul mb-0">
+                            <ul>
                                 {% for about_split in experience.about_split %}
                                 <li>
-                                    <span class="fa-li"><i class="fas fa-check"></i></span>
                                     {{ about_split }}
                                 </li>
                                 {% endfor %}
