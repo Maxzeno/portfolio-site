@@ -14,8 +14,8 @@
         <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
         <link href="{% static 'css/bootstrap.bundle.min.css' %}" rel="stylesheet" />
+        <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
 
     </head>
     <body id="page-top">
@@ -34,6 +34,7 @@
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#education">Education</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#skills">Skills</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#interests">Interests</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#others">Others</a></li>
                 </ul>
             </div>
         </nav>
@@ -74,7 +75,15 @@
                     {% for experience in experiences %}
                     <div class="d-flex flex-column flex-md-row justify-content-between {% if not forloop.last %}mb-5{% endif %}">
                         <div class="flex-grow-1">
-                            <div class="subheading-sm mb-4">{{ experience.position }} - {{ experience.company }}</div>
+                            <div class="subheading-sm mb-4">
+                                {% if experience.url %}
+                                <a href="{{ experience.url }}" class="text-muted">
+                                    {{ experience.position }} - {{ experience.company }}
+                                </a>
+                                {% else %}
+                                    {{ experience.position }} - {{ experience.company }}
+                                {% endif %}
+                            </div>
                             <ul>
                                 {% for about_split in experience.about_split %}
                                 <li>
@@ -101,7 +110,13 @@
                                 <div class="d-flex flex-column flex-md-row justify-content-between mb-3">
                                     <div class="flex-grow-1">
                                         <div class="subheading-sm mb-0">
-                                            <a href="{{ project.url }}" class="text-muted">{{ project.name }}</a>
+                                            {% if project.url %}
+                                            <a href="{{ project.url }}" class="text-muted">
+                                                {{ project.name }}
+                                            </a>
+                                            {% else %}
+                                                {{ project.name }}
+                                            {% endif %}
                                         </div>
                                     </div>
                                     <div class="flex-shrink-0"><span  class="text-success">{{ project|start_dash_end }}</span></div>
@@ -185,10 +200,30 @@
                     {% endfor %}
                 </div>
             </section>
+            <hr class="m-0" />
+            <!-- Others-->
+            <section class="resume-section" id="others">
+                <div class="resume-section-content">
+                    <h2 class="mb-4 mt-2">Others</h2>
+                    {% for other in others %}
+                    <div class="d-flex flex-column flex-md-row justify-content-between {% if not forloop.last %}mb-5{% endif %}">
+                        <div class="flex-grow-1">
+                            <div class="subheading-sm mb-3">{{ other.header }}</div>
+                            {% if other.photo %}
+                                <img class="img-fluid rounded-1 mb-3" src="{{ other.photo.url }}" alt="#">
+                            {% endif %}
+                            <p>{{ other.about }}</p>
+                        </div>
+                        <div class="flex-shrink-0"><span  class="text-success">{{ other.date }}</span></div>
+                    </div>
+                    {% endfor %}
+
+                </div>
+            </section>
         </div>
         <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
         <!-- Core theme JS-->
         <script src="{% static 'js/scripts.js' %}"></script>

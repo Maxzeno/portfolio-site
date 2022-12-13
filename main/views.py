@@ -13,6 +13,7 @@ class Index(View):
 		tools = models.LanguageToolsModel.objects.order_by('-show_first')
 		workflows = models.WorkflowModel.objects.order_by('-show_first')
 		interests = models.InterestsModel.objects.order_by('-show_first')
+		others = models.OthersModel.objects.order_by('-show_first')
 
 		return render(request, 'index.html', {
 			'profile': profile,
@@ -22,4 +23,5 @@ class Index(View):
 			'tools': tools,
 			'workflows': workflows,
 			'interests': interests,
+			'others': others,
 			})

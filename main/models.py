@@ -22,6 +22,7 @@ class PortfolioModel(models.Model):
 class ExperienceModel(models.Model):
 	position = models.CharField(max_length=255, blank=True)
 	company = models.CharField(max_length=255, blank=True)
+	url = models.URLField(blank=True)
 	about = models.TextField(max_length=1000, blank=True)
 	start = models.CharField(max_length=255, blank=True)
 	end = models.CharField(max_length=255, blank=True)
@@ -89,3 +90,14 @@ class InterestsModel(models.Model):
 
 	def __str__(self):
 		return self.about[:50]
+
+
+class OthersModel(models.Model):
+	header = models.CharField(max_length=255, blank=True)
+	photo = models.ImageField(upload_to='images/', blank=True, null=True)
+	about = models.TextField(max_length=1000, blank=True)
+	show_first = models.IntegerField(default=1)
+	date = models.CharField(max_length=255, blank=True)
+
+	def __str__(self):
+		return f'{self.header[:50]} - {self.about[:50]}'
