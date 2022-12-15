@@ -126,7 +126,15 @@
                                 <img class="img-fluid rounded-1" src="{{ project.photo.url }}" alt="#">
                             </div>
                             <div class="col-sm-6 mt-sm-0 mt-3">
-                                <p class="ms-md-4 mt-md-0 mt-2">{{ project.about }}</p>
+                                <p class="ms-md-4 mt-md-0 mt-2">
+                                     <ul>
+                                        {% for about_split in project.about_split %}
+                                        <li>
+                                            {{ about_split }}
+                                        </li>
+                                        {% endfor %}
+                                    </ul>
+                                </p>
                             </div>
                         </div>
                     </div>

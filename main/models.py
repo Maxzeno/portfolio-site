@@ -50,6 +50,15 @@ class ProjectModel(models.Model):
 	end = models.CharField(max_length=255, blank=True)
 	show_first = models.IntegerField(default=1)
 
+	def about_split(self):
+		about = self.about
+		if isinstance(about, str):
+			sentences = about.split('\n')
+			print(sentences)
+			no_empty_str = filter(lambda i: i not in {'\r', '', '\n'}, sentences)
+			return no_empty_str
+		return []
+
 	def __str__(self):
 		return f'{self.name} {self.about[:50]}'
 
