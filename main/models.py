@@ -82,7 +82,7 @@ class LanguageToolsModel(models.Model):
 	show_first = models.IntegerField(default=1)
 
 	def __str__(self):
-		return self.css_class
+		return self.name
 
 
 class WorkflowModel(models.Model):
