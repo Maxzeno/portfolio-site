@@ -169,9 +169,12 @@
                 <div class="resume-section-content">
                     <h2 class="mb-4 mt-2">Skills</h2>
                     <div class="subheading-sm mb-3">Programming Languages & Tools</div>
-                    <ul class="list-inline dev-icons">
+                    <ul class="fa-ul mb-0">
                         {% for tool in tools %}
-                        <li class="list-inline-item"><i class="{{ tool.css_class }}"></i></li>
+                        <li>
+                            <span class="fa-li"><i class="fas fa-check"></i></span>
+                            {{ tool.name }}
+                        </li>
                         {% endfor %}
 
                         <!-- <li class="list-inline-item"><i class="fab fa-html5"></i></li>

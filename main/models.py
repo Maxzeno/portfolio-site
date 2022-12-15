@@ -77,7 +77,7 @@ class EducationModel(models.Model):
 
 
 class LanguageToolsModel(models.Model):
-	css_class = models.CharField(max_length=255, blank=True)
+	# css_class = models.CharField(max_length=255, blank=True)
 	name = models.CharField(max_length=255, blank=True)
 	show_first = models.IntegerField(default=1)
 
