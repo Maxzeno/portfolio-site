@@ -3,6 +3,11 @@ from . import models
 
 # Register your models here.
 
+admin.site.site_header = 'Profolio Admin'
+admin.site.site_title = 'Profolio Admin Portal'
+admin.site.index_title = 'Welcome to my profolio'
+
+
 admin.site.register(models.PortfolioModel)
 admin.site.register(models.ExperienceModel)
 admin.site.register(models.ProjectModel)

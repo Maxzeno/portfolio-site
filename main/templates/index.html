@@ -56,7 +56,8 @@
                     {% endfor %}
                     </h1>
                     <div class="subheading-sm mb-5">
-                        {{ profile.address }} · {{ profile.phone }} ·
+                        {{ profile.address }} {% if profile.address and profile.phone or profile.address and profile.email %} · {% endif %} 
+                        {{ profile.phone }} {% if profile.phone and profile.email %} · {% endif %}
                         <a href="mailto:{{ profile.email }}" class="text-success" style="word-wrap: break-word;">{{ profile.email }}</a>
                     </div>
                     <p class="lead mb-5">{{ profile.about }}</p>

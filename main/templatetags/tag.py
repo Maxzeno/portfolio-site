@@ -10,4 +10,3 @@ def start_dash_end(value):
 	if value.start:
 		return f"{value.start} - {value.end if value.end else 'Present'}"
 	return value.end if value.end else ''
-

@@ -32,7 +32,6 @@ class ExperienceModel(models.Model):
 		about = self.about
 		if isinstance(about, str):
 			sentences = about.split('\n')
-			print(sentences)
 			no_empty_str = filter(lambda i: i not in {'\r', '', '\n'}, sentences)
 			return no_empty_str
 		return []
@@ -54,7 +53,6 @@ class ProjectModel(models.Model):
 		about = self.about
 		if isinstance(about, str):
 			sentences = about.split('\n')
-			print(sentences)
 			no_empty_str = filter(lambda i: i not in {'\r', '', '\n'}, sentences)
 			return no_empty_str
 		return []
