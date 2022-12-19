@@ -58,7 +58,7 @@ class ProjectModel(models.Model):
 		return []
 
 	def __str__(self):
-		return f'{self.name} {self.about[:50]}'
+		return f"name: {self.name} - show first: {self.show_first} - about: {self.about[:50]}"
 
 
 class EducationModel(models.Model):
@@ -80,7 +80,7 @@ class LanguageToolsModel(models.Model):
 	show_first = models.IntegerField(default=1)
 
 	def __str__(self):
-		return self.name
+		return f"name: {self.name} - show_first: {self.show_first}"
 
 
 class WorkflowModel(models.Model):
