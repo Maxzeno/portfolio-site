@@ -31,9 +31,9 @@ DEBUG = bool(int(config('DEBUG', 0)))
 
 # USE LOCAL STORAGE
 TRY_LOCAL_STORAGE_ = bool(int(config('TRY_LOCAL_STORAGE_', 0)))
+TRY_LOCAL_DB_ = bool(int(config('TRY_LOCAL_DB_', 0)))
 
-# if true runs migrate in wsgi
-# _DEPLOY = True
+
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
@@ -96,13 +96,26 @@ WSGI_APPLICATION = 'resume_app.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
+if TRY_LOCAL_DB_:
+    DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3' if DEBUG else BASE_DIR / 'db-production.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
+
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': config('DATABASES_DEFAULT_ENGINE'),
+            'NAME': config('DATABASES_DEFAULT_NAME'),
+            'HOST': config('DATABASES_DEFAULT_HOST'),
+            'PORT': int(config('DATABASES_DEFAULT_PORT')),
+            'USER': config('DATABASES_DEFAULT_USER'),
+            'PASSWORD': config('DATABASES_DEFAULT_PASSWORD'),
+        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
