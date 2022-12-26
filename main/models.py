@@ -3,6 +3,7 @@ from django.utils import timezone
 
 # Create your models here.
 
+
 class PortfolioModel(models.Model):
 	name = models.CharField(max_length=255, blank=True)
 	photo = models.ImageField(upload_to='images/', blank=True, null=True)
@@ -10,9 +11,10 @@ class PortfolioModel(models.Model):
 	phone = models.CharField(max_length=255, blank=True)
 	address = models.TextField(max_length=1000, blank=True)
 	about = models.TextField(max_length=10000, blank=True)
-	linkedin = models.CharField(max_length=255, blank=True)
-	twitter = models.CharField(max_length=255, blank=True)
-	github = models.CharField(max_length=255, blank=True)
+	website = models.URLField(blank=True)
+	linkedin = models.URLField(blank=True)
+	twitter = models.URLField(blank=True)
+	github = models.URLField(blank=True)
 	the_date = models.DateField(default=timezone.now, blank=True)
 
 	def __str__(self):
