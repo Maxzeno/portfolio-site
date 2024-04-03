@@ -1,5 +1,5 @@
 from django.contrib import admin
-from . import models
+from main import models
 
 # Register your models here.
 
@@ -16,3 +16,4 @@ admin.site.register(models.LanguageToolsModel)
 admin.site.register(models.WorkflowModel)
 admin.site.register(models.InterestsModel)
 admin.site.register(models.OthersModel)
+admin.site.register(models.BlogModel)
