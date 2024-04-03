@@ -25,14 +25,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY')
 
 
-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = bool(int(config('DEBUG', 0)))
 
 # USE LOCAL STORAGE
 TRY_LOCAL_STORAGE_ = bool(int(config('TRY_LOCAL_STORAGE_', 0)))
 TRY_LOCAL_DB_ = bool(int(config('TRY_LOCAL_DB_', 0)))
-
+TRY_LOCAL_EMAIL_ = bool(int(config('TRY_LOCAL_EMAIL_', 0)))
 
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
@@ -77,7 +76,7 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             'main/templates',
-            ],
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -98,11 +97,11 @@ WSGI_APPLICATION = 'resume_app.wsgi.application'
 
 if TRY_LOCAL_DB_:
     DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
     }
-}
 
 
 else:
@@ -181,3 +180,16 @@ if not TRY_LOCAL_STORAGE_:
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# DEVELOPMENT
+if TRY_LOCAL_EMAIL_:
+    EMAIL_HOST = 'localhost'
+    EMAIL_PORT = '1025'
+
+# PRODUCTION
+else:
+    EMAIL_HOST = config('EMAIL_HOST')
+    EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+    EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+    EMAIL_PORT = config('EMAIL_PORT')
+    EMAIL_USE_TLS = bool(config('EMAIL_USE_TLS'))
