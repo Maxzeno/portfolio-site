@@ -6,6 +6,10 @@ from django.utils import timezone
 
 class PortfolioModel(models.Model):
     name = models.CharField(max_length=255, blank=True)
+    cv = models.FileField(
+        upload_to='file/', blank=True, null=True)
+    experience = models.CharField(max_length=255, blank=True)
+    iam = models.CharField(max_length=255, blank=True)
     photo = models.ImageField(upload_to='images/', blank=True, null=True)
     email = models.CharField(max_length=255, blank=True)
     phone = models.CharField(max_length=255, blank=True)
@@ -17,6 +21,11 @@ class PortfolioModel(models.Model):
     github = models.URLField(blank=True)
     the_date = models.DateField(default=timezone.now, blank=True)
 
+    def twitter_handle(self):
+        if not self.twitter or len(self.twitter.split('/')) <= 1:
+            return ""
+        return f"@{self.twitter.split('/')[-1]}"
+
     def __str__(self):
         return f'{self.name} {self.email}'
 
@@ -24,6 +33,7 @@ class PortfolioModel(models.Model):
 class ExperienceModel(models.Model):
     position = models.CharField(max_length=255, blank=True)
     company = models.CharField(max_length=255, blank=True)
+    location = models.CharField(max_length=255, blank=True)
     url = models.URLField(blank=True)
     about = models.TextField(max_length=1000, blank=True)
     start = models.CharField(max_length=255, blank=True)
@@ -82,6 +92,7 @@ class EducationModel(models.Model):
 class LanguageToolsModel(models.Model):
     # css_class = models.CharField(max_length=255, blank=True)
     name = models.CharField(max_length=255, blank=True)
+    proficiency = models.FloatField(default=90)
     show_first = models.IntegerField(default=1)
 
     def __str__(self):
@@ -125,3 +136,15 @@ class BlogModel(models.Model):
 
     def __str__(self):
         return f'{self.header[:50]} - {self.by[:50]}'
+
+
+class ContactModel(models.Model):
+    subject = models.CharField(max_length=255, blank=True)
+    message = models.CharField(max_length=2000, blank=True)
+    fullname = models.CharField(max_length=255, blank=True)
+    email = models.CharField(max_length=2000, blank=True)
+    show_first = models.IntegerField(default=1)
+    date = models.DateField(default=timezone.now)
+
+    def __str__(self):
+        return f'{self.subject[:50]} - {self.fullname[:50]}'
