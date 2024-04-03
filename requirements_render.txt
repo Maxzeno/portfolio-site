@@ -1,6 +1,6 @@
 Django
-Pillow==10.0.0
-python-decouple==3.8
+Pillow
+python-decouple
 whitenoise==6.5.0
 cloudinary==1.34.0
 django-cloudinary-storage==0.3.0
