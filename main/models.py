@@ -50,7 +50,7 @@ class ExperienceModel(models.Model):
         return []
 
     def __str__(self):
-        return self.company
+        return f"company: {self.company}, position: {self.position}"
 
 
 class ProjectModel(models.Model):
