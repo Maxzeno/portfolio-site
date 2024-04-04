@@ -415,7 +415,7 @@
                                 </div>
                                 <div class="contact-details mt-2">
                                     <h5>Call</h5>
-                                    <p><a href="tel:+1000123456789">{{ profile.phone }}</a></p>
+                                    <p><a href="tel:{{ profile.phone|default:''|spaceless }}">{{ profile.phone }}</a></p>
                                 </div>
                             </div>
                         </div>
