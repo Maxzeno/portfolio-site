@@ -18,7 +18,7 @@ class Index(View):
         workflows = models.WorkflowModel.objects.order_by('-show_first')
         interests = models.InterestsModel.objects.order_by('-show_first')
         others = models.OthersModel.objects.order_by('-show_first')
-        blogs = models.BlogModel.objects.order_by('-show_first')[:3]
+        blogs = models.BlogModel.objects.order_by('-show_first')
 
         return {
             'form': form,
